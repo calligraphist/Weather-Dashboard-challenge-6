@@ -50,6 +50,7 @@ $(function () {
       .then(data => {
         var forecastWeather = $(".getForcast")
         forecastWeather.text("")
+        // date should appear
         // var forecastImg = $("<img>").addClass("card-img").attr("src", `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
         // var forecastTemp=$("<h5>").addClass("card-text").text("Temp:"+ data.main.temp + " C")
         // var forecastHumid=$("<h5>").addClass("card-text").text("Humidity:"+ data.main.humidity)
@@ -62,13 +63,13 @@ $(function () {
         console.log(data)
       })
   }
-  var cityArr = localStorage.getItem("city") || []
+  var value = localStorage.getItem("city") || []
   var formSubmitHandler = function (event) {
     event.preventDefault();
     var cityname = nameInputEl.value.trim();
-    localStorage.setItem("city", JSON.stringify(cityArr))
-    cityArr.push(cityname)
-    console.log(cityArr)
+    localStorage.setItem("city", JSON.stringify(value))
+    // value.push(cityname)// why this is not working?
+    // console.log(value)
     cityname.textContent = ``;
     nameInputEl.value = ``;
     getGeo(cityname);
@@ -79,7 +80,7 @@ $(function () {
     for (var i = 0; i < data.length; i++) {
       var cityBtn = $("<button>").text(data[i])
       $(".recentSearches").append(cityBtn)
-      // cityBtn.on("click", getGeo(cityBtn --- find out what will search for value ---))
+       //cityBtn.on("click", getGeo(city))//--- find out what will search for value ---))
     }
   }
 

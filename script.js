@@ -1,6 +1,8 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+
 $(function () {
   var userFormEl = document.querySelector('#user-form');
   var nameInputEl = document.querySelector('#cityname');
@@ -19,33 +21,67 @@ $(function () {
       `).then(response => response.json())
       .then(data => {
         console.log(data)
-        var currentWeather=$(".currentweather")
-        var currentTemp=$("<h5>").addClass("card-text").text("Temp:"+ data.main.temp)
+        var currentWeather = $(".currentweather")
+        currentWeather.text("")
+        var cityInfo = $("<div>").addClass("cityInfo d-flex")
+        var cityName = $("<h2>").addClass("card-text mx-3").text(data.name)
+        var today = new Date(data.dt * 1000)
+        var day = today.getMonth() + 1
+        var date = $("<h4>").addClass("card-text").text("(" + day + "/" + today.getDate() + '/' + today.getFullYear() + ")")
+
+        var currentImg = $("<img>").addClass("card-img").attr("src", `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
+        var currentTemp = $("<h5>").addClass("card-text").text("Temp:" + data.main.temp + " C")
+        var currentHumid = $("<h5>").addClass("card-text").text("Humidity:" + data.main.humidity)
+        var currentwind = $("<h5>").addClass("card-text").text("Wind:" + data.wind.speed)
+
+        cityInfo.append(cityName)
+        cityInfo.append(date)
+        currentWeather.append(cityInfo)
+        currentWeather.append(currentImg)
         currentWeather.append(currentTemp)
+        currentWeather.append(currentHumid)
+        currentWeather.append(currentwind)
+
       })
   }
   function getForecast(lat, lon) {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}
       `).then(response => response.json())
       .then(data => {
+        var forecastWeather = $(".getForcast")
+        forecastWeather.text("")
+        // var forecastImg = $("<img>").addClass("card-img").attr("src", `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
+        // var forecastTemp=$("<h5>").addClass("card-text").text("Temp:"+ data.main.temp + " C")
+        // var forecastHumid=$("<h5>").addClass("card-text").text("Humidity:"+ data.main.humidity)
+        // var forecastwind=$("<h5>").addClass("card-text").text("Wind:"+ data.wind.speed)
+        //  forcastWeather.append(forecastImg)
+        // forecastWeather.append(forecastTemp)
+        // forecastWeather.append(forecastHumid)
+        // forecastWeather.append(forecastwind)
+
         console.log(data)
       })
   }
+  var cityArr = localStorage.getItem("city") || []
   var formSubmitHandler = function (event) {
     event.preventDefault();
-
     var cityname = nameInputEl.value.trim();
-    console.log(cityname);
+    localStorage.setItem("city", JSON.stringify(cityArr))
+    cityArr.push(cityname)
+    console.log(cityArr)
+    cityname.textContent = ``;
+    nameInputEl.value = ``;
     getGeo(cityname);
-    // if (username) {
-    //   getUserRepos(username);
-
-    //   repoContainerEl.textContent = '';
-    //   nameInputEl.value = '';
-    // } else {
-    //   alert('Please enter a GitHub username');
-    // }
+    loadSearches()
   };
+  function loadSearches() {
+    var data = JSON.parse(localStorage.getItem("city"))
+    for (var i = 0; i < data.length; i++) {
+      var cityBtn = $("<button>").text(data[i])
+      $(".recentSearches").append(cityBtn)
+      // cityBtn.on("click", getGeo(cityBtn --- find out what will search for value ---))
+    }
+  }
 
   // Add click events on the save button. This code should
   // use the id in the containing input as a key to save the user input in
@@ -59,3 +95,4 @@ $(function () {
 
   userFormEl.addEventListener('submit', formSubmitHandler);
 });
+

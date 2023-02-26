@@ -13,13 +13,12 @@
 </head>
 
 <body>
-  <header class="jumbotron-fluid bg-dark text-white text-center">
+  <header class="jumbotron-fluid bg-primary text-white text-center">
     <h1 class="display-3">Weather Dashboard</h1>
   </header>
 
-  <main class="row justify-space-between" style="border:1px solid black">
+  <main class="row justify-space-between">
     <div class="col-3" style="border:1px solid red">
-
       <div class="card">
         <h3 class="card-header">Search for a city:</h3>
         <form id="user-form" class="card-body">
@@ -33,8 +32,16 @@
     <div class="col-9" style="border:1px solid blue">
       <div class="card currentweather"></div>
     </div>
-
+    <!-- <div class="col-9" style="border:1px solid green">
+      <div class="card forcastweather">
+        <h3 class="card-header">5-Day forcast:</h3>
+      
+      </div>
+    </div> -->
     
+    <div class="recentSearches"></div>
+
+
 
     <!-- <div class="col-12 col-md-8">
           <h2 class="subtitle">Showing Repositories for: <span id="repo-search-term"></span></h2>

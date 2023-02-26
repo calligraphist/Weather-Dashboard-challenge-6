@@ -67,9 +67,8 @@ $(function () {
   var formSubmitHandler = function (event) {
     event.preventDefault();
     var cityname = nameInputEl.value.trim();
-    localStorage.setItem("city", JSON.stringify(value))
-    // value.push(cityname)// why this is not working?
-    // console.log(value)
+    console.log(cityname)
+    localStorage.setItem("city", JSON.stringify(cityname))
     cityname.textContent = "";
     nameInputEl.value = "";
     getGeo(cityname);
@@ -77,11 +76,9 @@ $(function () {
   };
   function loadSearches() {
     var data = JSON.parse(localStorage.getItem("city"))
-    for (var i = 0; i < data.length; i++) {
-      var cityBtn = $("<button>").text(data[i])
+    var cityBtn = $("<button>").text(data)
       $(".recentSearches").append(cityBtn)
-       //cityBtn.on("click", getGeo(city))//--- find out what will search for value ---))
-    }
+       //cityBtn.on("click", getGeo(cityname))//--- find out what will search for value ---))
   }
 
   // Add click events on the save button. This code should
@@ -95,5 +92,5 @@ $(function () {
   //   });
 
   userFormEl.addEventListener('submit', formSubmitHandler);
+  //cityBtn.addEventListener('click',  buttonClickHandler);
 });
-

@@ -70,8 +70,8 @@ $(function () {
     localStorage.setItem("city", JSON.stringify(value))
     // value.push(cityname)// why this is not working?
     // console.log(value)
-    cityname.textContent = ``;
-    nameInputEl.value = ``;
+    cityname.textContent = "";
+    nameInputEl.value = "";
     getGeo(cityname);
     loadSearches()
   };

@@ -6,6 +6,7 @@
 $(function () {
   var userFormEl = document.querySelector('#user-form');
   var nameInputEl = document.querySelector('#cityname');
+  //var buttonEl = document.querySelector('#city-buttons');
   var apiKey = "0649bac615e9d5f8978e246ad6508e85"
   function getGeo(city) {
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
@@ -81,16 +82,7 @@ $(function () {
        //cityBtn.on("click", getGeo(cityname))//--- find out what will search for value ---))
   }
 
-  // Add click events on the save button. This code should
-  // use the id in the containing input as a key to save the user input in
-  // local storage. 
-  // $(".saveBtn").click(function (event) {
-  //     event.preventDefault();
-  //     var value = $(this).siblings(".description").val();
-  //     console.log(value)
-  //     localStorage.setItem(city,value);
-  //   });
 
   userFormEl.addEventListener('submit', formSubmitHandler);
-  //cityBtn.addEventListener('click',  buttonClickHandler);
+ // buttonEl.addEventListener('click',  buttonClickHandler);
 });

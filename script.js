@@ -102,20 +102,25 @@ $(function () {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}
       `).then(response => response.json())
       .then(data => {
-        var forecastWeather = $(".getForcast")
-        forecastWeather.text("")
+        var forecastWeather = document.createElement("div")
+        console.log(forecastWeather)
+        $('<div/>',{
+       class: 'future-forecast-container'
+      }).appendTo('#parentDiv');
+        $(".future-forecast-container").append(forecastWeather);
+        console.log("5day", data)
         for (i=0; i<= 5; i++){
         //date should appear
-        var forecastImg = $("<img>").addClass("card-img").attr("src", `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
-        var forecastTemp=$("<h5>").addClass("card-text").text("Temp:"+ data.main.temp + " C")
-        var forecastHumid=$("<h5>").addClass("card-text").text("Humidity:"+ data.main.humidity)
-        var forecastwind=$("<h5>").addClass("card-text").text("Wind:"+ data.wind.speed)
-         forcastWeather.append(forecastImg)
+        var forecastImg = $("<img>").addClass("card-img").attr("src", `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`)
+        var forecastTemp=$("<h5>").addClass("card-text").text("Temp:"+ data.list[0].main.temp + " C")
+        var forecastHumid=$("<h5>").addClass("card-text").text("Humidity:"+ data.list[0].main.humidity)
+        var forecastwind=$("<h5>").addClass("card-text").text("Wind:"+ data.list[0].wind.speed)
+        console.log(forecastImg)
+        forecastWeather.append(forecastImg)
         forecastWeather.append(forecastTemp)
         forecastWeather.append(forecastHumid)
         forecastWeather.append(forecastwind)
-
-        console.log("5day", data)
+     
         }
       })
   }

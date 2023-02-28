@@ -48,7 +48,8 @@ THEN I am again presented with current and future conditions for that city
 ```
 
 ## Acknowledgements
- I acknowledge all my hardwork and some help from the tutors.
+ I acknowledge all my hardwork and some help from the tutors. 
+ Appriciate the help from my teacher assistant.
  got little inspiration from https://github.com/jmrendon48/
 
 

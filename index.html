@@ -18,8 +18,8 @@
   </header>
 
   <main class="row justify-space-between">
-    <div class="col-3" style="border:1px solid red">
-      <div class="card">
+    <div class="col-3" style="border:1px ">
+      <div class="card bg-info">
         <h3 class="card-header">Search for a city:</h3>
         <form id="user-form" class="card-body">
           <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
@@ -28,22 +28,22 @@
           </div>
         </form>
       </div>
-      
-      <h3 class="card-header">Search By city:</h3>
+      <div class="col-3" style="border:1px"></div>
+      <h3 class="card-header bg-secondary text-white">Search By city:</h3>
       <div id="city-buttons" class="card-body recentSearches">
         <button data-search="cityname" class="btn"></button>
       </div>
-      
+    </div>
     </div>
 
-    <div class="col-9" style="border:1px solid blue">
+    <div class="col-9 text-center" style="border:1px">
       <div class="card">
-        <div class="card currentweather"></div>
+        <div class="card currentweather bg-info"></div>
       </div>
     </div>
-    <h2 class="future-forecast-title" id="future-forecast-title"> 5 day forecast:</h2>
+    <h2 class="future-forecast-title bg-secondary text-center" id="future-forecast-title"> Next 5 days forecast</h2>
 
-    <div class="col-12 future-forecast-container ">
+    <div class="row-col-12 future-forecast-container">
       <div id="forecasts-cards-container" class="row forecasts-cards-container d-flex">
       </div>
     </div>

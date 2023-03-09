@@ -54,19 +54,23 @@ $(function () {
         
         var forecastContainer = $(".future-forecast-container").addClass("col-12");
         forecastContainer.empty();
-        // var forecastContainer = $("<h3/>").text("5 Day forecast")
+      
         console.log("5day", data)
+        // var today = new Date(data.dt * 1000)
+        // var day = today.getMonth() + 1
         
         for (i = 1; i <= 5; i++) {
-          var forecastWeather = $("<div/>").addClass("col-3")
+          var forecastWeather = $("<div/>").addClass("row card text-center bg-info")
           console.log(forecastWeather)
          
+          //var date = $("<h5>").addClass("card-text").text("(" +(day+(i+1)) + "/" + today.getDate() + '/' + today.getFullYear() + ")")
           var forecastImg = $("<img/>").addClass("card-img").attr("src", `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`)
           var forecastTemp = $("<h5/>").addClass("card-text").text("Temp:" + data.list[0].main.temp + " C")
           var forecastHumid = $("<h5/>").addClass("card-text").text("Humidity:" + data.list[0].main.humidity + "%")
           var forecastwind = $("<h5/>").addClass("card-text").text("Wind:" + data.list[0].wind.speed + "mph")
           console.log(forecastImg)
           forecastWeather.append(forecastImg)
+          //forecastWeather.append(date)
           forecastWeather.append(forecastTemp)
           forecastWeather.append(forecastHumid)
           forecastWeather.append(forecastwind)
